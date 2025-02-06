@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <div class="project-header">
+    <h1><%= @project.name %></h1>
+    
+    <div class="status-update-form">
+      <%= form_with(url: update_status_project_path(@project), method: :patch, local: true) do |f| %>
+        <%= f.select :status, Project::VALID_STATUSES, selected: @project.status %>
+        <%= f.submit "Update Status", class: "button" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="conversation-container">
+    <div class="new-comment-form">
+      <%= form_with(model: [@project, Comment.new], local: true, url: add_comment_project_path(@project)) do |f| %>
+        <%= f.text_area :content, placeholder: "Add a comment...", rows: 3 %>
+        <%= f.submit "Post Comment", class: "button" %>
+      <% end %>
+    </div>
+
+    <div class="conversation-history">
+      <% @conversation_items.each do |item| %>
+        <div class="conversation-item <%= item.class.name.downcase %>">
+          <div class="item-header">
+            <span class="timestamp"><%= time_ago_in_words(item.created_at) %> ago</span>
+          </div>
+          
+          <div class="item-content">
+            <% if item.is_a?(Comment) %>
+              <%= simple_format(item.content) %>
+            <% else %>
+              <%= "Status changed from #{item.old_status} to #{item.new_status}" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div> 

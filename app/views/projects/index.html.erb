@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Projects</h1>
+  
+  <div class="projects-list">
+    <% @projects.each do |project| %>
+      <div class="project-card">
+        <h2><%= project.name %></h2>
+        <p>Status: <%= project.status %></p>
+        <%= link_to "View Details", project_path(project), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to "New Project", new_project_path, class: "btn btn-success" %>
+</div> 
