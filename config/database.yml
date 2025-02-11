@@ -80,4 +80,4 @@ test:
 #
 
 production:
-  url: <%= ENV.fetch("DB_URL") %>
+  url: postgresql://project_conversations_user:s7q9VvLTBs74h1FdegHPuXQ9oAd2UaoT@dpg-culkeplsvqrc73cfjppg-a/project_conversations
