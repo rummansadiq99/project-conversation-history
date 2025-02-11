@@ -51,7 +51,7 @@ This project implements a conversation history feature for projects in Ruby on R
 
 ### Features
 - Users can leave comments.
-- Project managers can change project status.
+- Users can change project status.
 - All changes are recorded with timestamps.
 - Only comment authors can delete their own comments.
 - The history is displayed in chronological order.
